@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  title: MyString
+  minlevel: 1
+  questlevel: 1
+  entry: 1
+
+two:
+  title: MyString
+  minlevel: 1
+  questlevel: 1
+  entry: 1

@@ -1,0 +1,28 @@
+<h1>Editing quest_template</h1>
+
+<% form_for(@quest_template) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :minlevel %><br />
+    <%= f.text_field :minlevel %>
+  </p>
+  <p>
+    <%= f.label :questlevel %><br />
+    <%= f.text_field :questlevel %>
+  </p>
+  <p>
+    <%= f.label :entry %><br />
+    <%= f.text_field :entry %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @quest_template %> |
+<%= link_to 'Back', quest_templates_path %>

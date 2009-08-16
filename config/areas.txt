@@ -1,0 +1,202 @@
+1	 Dun Morogh
+3	 Badlands
+4	 Blasted Lands
+8	 Swamp of Sorrows
+10	 Duskwood
+11	 Wetlands
+12	 Elwynn Forest
+14	 Durotar
+15	 Dustwallow Marsh
+16	 Azshara
+17	 The Barrens
+21	 Kul Tiras
+22	 Programmer Isle
+25	 Blackrock Mountain
+28	 Western Plaguelands
+30	 Nine
+33	 Stranglethorn Vale
+36	 Alterac Mountains
+38	 Loch Modan
+40	 Westfall
+41	 Deadwind Pass
+44	 Redridge Mountains
+45	 Arathi Highlands
+46	 Burning Steppes
+47	 The Hinterlands
+51	 Searing Gorge
+65	 Dragonblight
+66	 Zul'Drak
+67	 The Storm Peaks
+85	 Tirisfal Glades
+130	 Silverpine Forest
+139	 Eastern Plaguelands
+141	 Teldrassil
+148	 Darkshore
+151	 Designer Island
+170	 Lordamere Lake
+206	 Utgarde Keep
+207	 The Great Sea
+208	 Unused Ironcladcove
+209	 Shadowfang Keep
+210	 Icecrown
+214	 The Great Sea
+215	 Mulgore
+267	 Hillsbrad Foothills
+268	 Azshara Crater
+269	 Dun Algaz
+276	 UNUSED Stonewrought Pass
+293	 Thoradin's Wall
+296	 South Seas UNUSED
+308	 The Forbidding Sea
+330	 Thandol Span
+331	 Ashenvale
+332	 The Great Sea
+357	 Feralas
+361	 Felwood
+377	 Southfury River
+394	 Grizzly Hills
+400	 Thousand Needles
+405	 Desolace
+406	 Stonetalon Mountains
+408	 Gillijim's Isle
+409	 Island of Doctor Lapidis
+440	 Tanaris
+457	 The Veiled Sea
+490	 Un'Goro Crater
+491	 Razorfen Kraul
+493	 Moonglade
+495	 Howling Fjord
+616	 Hyjal
+618	 Winterspring
+676	 Outland
+717	 The Stockade
+718	 Wailing Caverns
+719	 Blackfathom Deeps
+721	 Gnomeregan
+722	 Razorfen Downs
+796	 Scarlet Monastery
+876	 GM Island
+956	 The Verdant Fields
+1176	 Zul'Farrak
+1196	 Utgarde Pinnacle
+1337	 Uldaman
+1377	 Silithus
+1397	 Emerald Forest
+1417	 Sunken Temple
+1477	 The Temple of Atal'Hakkar
+1497	 Undercity
+1519	 Stormwind City
+1537	 Ironforge
+1579	 Unused The Deadmines 002
+1581	 The Deadmines
+1583	 Blackrock Spire
+1584	 Blackrock Depths
+1637	 Orgrimmar
+1638	 Thunder Bluff
+1657	 Darnassus
+1941	 Caverns of Time
+1977	 Zul'Gurub
+2017	 Stratholme
+2037	 Quel'thalas
+2057	 Scholomance
+2100	 Maraudon
+2159	 Onyxia's Lair
+2257	 Deeprun Tram
+2280	 DO NOT USE
+2366	 The Black Morass
+2367	 Old Hillsbrad Foothills
+2437	 Ragefire Chasm
+2557	 Dire Maul
+2597	 Alterac Valley
+2677	 Blackwing Lair
+2717	 Molten Core
+2817	 Crystalsong Forest
+2917	 Hall of Legends
+2918	 Champions' Hall
+3277	 Warsong Gulch
+3358	 Arathi Basin
+3428	 Ahn'Qiraj
+3429	 Ruins of Ahn'Qiraj
+3430	 Eversong Woods
+3433	 Ghostlands
+3455	 The North Sea
+3456	 Naxxramas
+3457	 Karazhan
+3459	 City
+3477	 Azjol-Nerub
+3478	 Gates of Ahn'Qiraj
+3479	 The Veiled Sea
+3483	 Hellfire Peninsula
+3487	 Silvermoon City
+3518	 Nagrand
+3519	 Terokkar Forest
+3520	 Shadowmoon Valley
+3521	 Zangarmarsh
+3522	 Blade's Edge Mountains
+3523	 Netherstorm
+3524	 Azuremyst Isle
+3525	 Bloodmyst Isle
+3535	 Hellfire Citadel
+3537	 Borean Tundra
+3540	 Twisting Nether
+3557	 The Exodar
+3562	 Hellfire Ramparts
+3605	 Hyjal Past
+3606	 Hyjal Summit
+3607	 Serpentshrine Cavern
+3698	 Nagrand Arena
+3702	 Blade's Edge Arena
+3703	 Shattrath City
+3711	 Sholazar Basin
+3713	 The Blood Furnace
+3714	 The Shattered Halls
+3715	 The Steamvault
+3716	 The Underbog
+3717	 The Slave Pens
+3789	 Shadow Labyrinth
+3790	 Auchenai Crypts
+3791	 Sethekk Halls
+3792	 Mana-Tombs
+3805	 Zul'Aman
+3817	 Testing
+3820	 Eye of the Storm
+3836	 Magtheridon's Lair
+3845	 Tempest Keep
+3847	 The Botanica
+3848	 The Arcatraz
+3849	 The Mechanar
+3917	 Auchindoun
+3923	 Gruul's Lair
+3948	 Brian and Pat Test
+3959	 Black Temple
+3968	 Ruins of Lordaeron
+3979	 The Frozen Sea
+4019	 Development Land
+4075	 Sunwell Plateau
+4076	 Reuse Me 7
+4080	 Isle of Quel'Danas
+4100	 The Culling of Stratholme
+4131	 Magisters' Terrace
+4196	 Drak'Tharon Keep
+4197	 Wintergrasp
+4201	 Vordrassil's Tears
+4228	 The Oculus
+4258	 The North Sea
+4264	 Halls of Stone
+4265	 The Nexus
+4272	 Halls of Lightning
+4273	 Ulduar
+4277	 Azjol-Nerub
+4298	 Plaguelands: The Scarlet Enclave
+4378	 Dalaran Arena
+4384	 Strand of the Ancients
+4395	 Dalaran
+4406	 The Ring of Valor
+4415	 The Violet Hold
+4416	 Gundrak
+4493	 The Obsidian Sanctum
+4494	 Ahn'kahet: The Old Kingdom
+4500	 The Eye of Eternity
+4602	 Force Interior
+4603	 Vault of Archavon
+4630	 The North Sea

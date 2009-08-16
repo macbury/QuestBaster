@@ -1,0 +1,53 @@
+<h1><%= @quest.title %></h1>
+<div class="box">
+	<h3>Informacje</h3>
+	<p>
+		<b>Lv. </b><%=h @quest.minLevel %> - <%= @quest.questLevel %><br/>
+		<b>Side/Race: </b><%= @quest.race_name %><br/>
+		<b>Type: </b> <%= @quest.type_name %><br/>
+		<%= wow_currency(@quest.RewOrReqMoney) %>
+	</p>
+	
+	<p>
+		<%= link_to 'WoW Head Link', "http://www.wowhead.com/?quest=#{@quest.entry}" %>
+	</p>
+	
+	<p>
+		<%= details(@quest.Objectives) %>
+	</p>
+	
+	<ul>
+		<% @quest.requiredItems.each do |item, count| %>
+			<li><%= link_to item.name, "http://www.wowhead.com/?item=#{item.id}" %> x<%= count %></li>
+		<% end %>
+		
+		<% @quest.requiredCreatures.each do |creature, count| %>
+			<li><%= link_to creature.name, "http://www.wowhead.com/?npc=#{creature.id}" %> x<%= count %></li>
+		<% end %>
+	</ul>
+	
+	<h3>Details</h3>
+	<p>
+		<%= details(@quest.Details) %>
+	</p>
+	
+	
+	<% unless @quest.rewardItems.empty? %>
+	<h3>Itemy do zdobycia</h3>
+	<ul>
+		<% @quest.rewardItems.each do |item, count| %>
+			<li><%= link_to item.name, "http://www.wowhead.com/?item=#{item.id}" %> x<%= count %></li>
+		<% end %>
+	</ul>
+	<% end %>
+	<% unless @quest.rewardReputations.empty? %>
+	<h3>Zmiany w reputacji:</h3>
+	<ul>
+		<% @quest.rewardReputations.each do |faction, count| %>
+			<li><%= link_to Factions[faction], "http://www.wowhead.com/?faction=#{faction}" %>: <%= plus_minus(count) %></li>
+		<% end %>
+	</ul>
+	<% end %>
+</div>
+
+<%= link_to 'Back', quest_templates_path %>

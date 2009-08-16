@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :quest_templates, :collection => { :search => :any }
+  map.search '/szukaj', :controller => 'quest_templates', :action => 'index'
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
@@ -31,7 +33,7 @@ ActionController::Routing::Routes.draw do |map|
   #   end
 
   # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
-  # map.root :controller => "welcome"
+   map.root :controller => "quest_templates"
 
   # See how all your routes lay out with "rake routes"
 

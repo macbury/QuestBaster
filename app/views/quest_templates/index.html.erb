@@ -1,0 +1,43 @@
+<h1><a href="/">Quest Baster 8000</a></h1>
+
+<div class="search_box">
+	<% form_tag search_path, :method => :get do %>
+		<%= submit_tag 'Szukaj' %>
+		<label>Name: </label>
+		<%= text_field 'quest', 'title', :value => @p[:title] %>
+		<label>Lv: </label>
+		<%= text_field 'quest', 'level', :value => @p[:level] %><br />
+		<label>Type: </label>
+		<%= select 'quest', 'type', QuestType.map { |id, type| [type, id] }, { :include_blank => true, :selected => @p[:type] } %>
+		<label>Race/Side: </label>
+		<%= select 'quest', 'race', Races.sort{ |a,b| a[0] <=> b[0] }.map { |id, type| [type, id] }, {:selected => @p[:race]} %>
+
+	<% end %>
+</div>
+
+<table>
+  <tr>
+    <th><%= link_to "Name", :params => params.merge(:sort_by => "Title", :sort_type => (@sort_by=="Title" && @sort_type=="asc")? "desc" : "asc") %></th>
+    <th class="level"><%= link_to "Level", :params => params.merge(:sort_by => "QuestLevel", :sort_type => (@sort_by=="QuestLevel" && @sort_type=="asc")? "desc" : "asc") %></th>
+    <th class="level"><%= link_to "Req", :params => params.merge(:sort_by => "MinLevel", :sort_type => (@sort_by=="MinLevel" && @sort_type=="asc")? "desc" : "asc") %></th>
+    <th class="rewards">Rewards</th>
+  </tr>
+
+<% @quest_templates.each do |quest_template| %>
+  <tr>
+    <td><%= link_to quest_template.title, quest_template %></td>
+    <td class="level"><%=h quest_template.questLevel %></td>
+		<td class="level"><%=h quest_template.minLevel %></td>
+    
+		<td class="rewards">
+			<%= wow_currency(quest_template.RewOrReqMoney) %><br />
+			<% quest_template.rewardItems.each do |item, count| %>
+				<%= link_to item.name, "http://www.wowhead.com/?item=#{item.id}" %> x<%= count %><br />
+			<% end %>
+		</td>
+  </tr>
+<% end %>
+</table>
+<div class="pagination_box">
+	<%= will_paginate @quest_templates %>
+</div>
