@@ -5,7 +5,7 @@ class QuestTemplatesController < ApplicationController
     @p = params[:quest] || {}
     
     @sort_by = params[:sort_by] || "Title"
-    @sort_type = params[:sort_type] || "desc"
+    @sort_type = params[:sort_type] || "asc"
     order = ["Title","QuestLevel","MinLevel"].find(lambda {"Title"}) {|sort| sort == @sort_by}
     order += (@sort_type == "asc")? " ASC" : " DESC"
     
@@ -33,7 +33,7 @@ class QuestTemplatesController < ApplicationController
       end
     end
     
-    @quest_templates = QuestTemplate.paginate :per_page => 20, :page => params[:page], :conditions => conditions, :order => "#{@sort_by} #{@sort_type}" 
+    @quest_templates = QuestTemplate.paginate :per_page => 20, :page => params[:page], :conditions => conditions, :order => order
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @quest_templates }
