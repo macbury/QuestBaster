@@ -9,9 +9,9 @@ class ApplicationController < ActionController::Base
   USER_NAME, PASSWORD = "gm", "testy"
 
   def authenticate
-    authenticate_or_request_with_http_basic do |user_name, password|
-      user_name == USER_NAME && password == PASSWORD
-    end
+    #authenticate_or_request_with_http_basic do |user_name, password|
+    #  user_name == USER_NAME && password == PASSWORD
+    #end
   end
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password

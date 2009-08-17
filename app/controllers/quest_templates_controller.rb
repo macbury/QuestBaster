@@ -1,6 +1,55 @@
 class QuestTemplatesController < ApplicationController
+  
+  def suggest_monster
+    @monsters = Monster.all(:conditions => ['name LIKE ? OR entry = ?', "%#{params[:q]}%", params[:q].to_i], :limit => 10).map(&:name)
+    
+    render :text => @monsters.join("\n")
+  end
+  
+  def sugest_faction
+    @factions = []
+    faction_value = params[:q]
+    unless faction_value.nil?
+      Factions.each do |faction_id, faction_name|
+        if faction_name =~ /^#{faction_value}/i || faction_id == faction_value.to_i
+          @factions << faction_name
+        end
+      end
+    end
+    render :text => @factions.join("\n")
+  end
+  
+  def suggest_item
+    @items = ItemTemplate.all(:conditions => ['name LIKE ? OR entry = ?', "%#{params[:q]}%", params[:q].to_i], :limit => 10).map(&:name)
+    
+    render :text => @items.join("\n")
+  end
+  
+  def sugest_zone_or_sort
+    @results = []
+    
+    zone_value = params[:q]
+    
+    unless zone_value.nil?
+      Zones.each do |area_id, area_name|
+        if area_name =~ /^#{zone_value}/i || area_id == zone_value.to_i
+          @results << area_name
+        end
+      end
+
+      Quest_Sort.each do |sort_id, sort_name|
+        if sort_name =~ /^#{zone_value}/i || sort_id == zone_value.to_i
+          @results << sort_name
+        end
+      end
+    end
+
+    render :text => @results.join("\n")
+  end
+  
   # GET /quest_templates
   # GET /quest_templates.xml
+  
   def index
     @p = params[:quest] || {}
     
@@ -65,6 +114,7 @@ class QuestTemplatesController < ApplicationController
   # GET /quest_templates/1/edit
   def edit
     @quest_template = QuestTemplate.find(params[:id])
+    render :action => "new"
   end
 
   # POST /quest_templates

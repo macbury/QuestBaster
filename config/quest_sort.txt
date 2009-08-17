@@ -1,0 +1,40 @@
+61	Warlock	
+81	Warrior
+82	Shaman	
+141	Paladin
+161	Mage	
+162	Rogue
+261	Hunter	
+262	Priest
+263	Druid	
+372	Death Knight
+24	Herbalism	
+101	Fishing
+121	Blacksmithing	
+181	Alchemy
+182	Leatherworking	
+201	Engineering
+264	Tailoring	
+304	Cooking
+324	First AID	
+762	Riding
+371	Inscription	
+373	Jewelcrafting
+1	Epic	
+21	REUSE - old wailing caverns
+22	Seasonal	
+23	REUSE - old undercity one
+25	Battlegrounds	
+41	REUSE - old uldaman
+221	Treasure Map	
+241	Tournament
+284	Special	
+344	Legendary
+364	Darkmoon Faire	
+365	Ahn'Qiraj War
+366	Lunar Festival	
+367	Reputation
+368	Invasion	
+369	Midsummer
+370	Brewfest	
+374	Noblegarden

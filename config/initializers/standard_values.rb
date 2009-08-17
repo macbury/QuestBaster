@@ -47,9 +47,15 @@ File.new(RAILS_ROOT+'/config/factions.txt', "r").each do |line|
   end
 end
 
-Zones = {}
+Factions_Reputation = {
+  1 => 'Neutral',
+  3000 => 'Friendly',
+  9000 => 'Honored',
+  21000 => 'Revered',
+  42000 => 'Exalted'
+}
 
-regexp = Regexp.new(/^([0-9]{1,4})/i)
+Zones = {}
 
 File.new(RAILS_ROOT+'/config/factions.txt', "r").each do |line|
   area = line.strip
@@ -62,3 +68,43 @@ File.new(RAILS_ROOT+'/config/factions.txt', "r").each do |line|
     Zones[area_id.to_i] = area
   end
 end
+
+Quest_Sort = {}
+
+File.new(RAILS_ROOT+'/config/quest_Sort.txt', "r").each do |line|
+  name = line.strip
+  
+  if name =~ regexp
+    name_id = $1
+    name.gsub!($1, '')
+    name = name.strip
+    
+    Quest_Sort[name_id.to_i] = name
+  end
+end
+
+Quest_Flags = {
+  0	=> 'QUEST_FLAGS_NONE',
+  1	=> 'QUEST_FLAGS_STAY_ALIVE',
+  2	=> 'QUEST_FLAGS_EVENT',
+  4	=> 'QUEST_FLAGS_EXPLORATION',
+  8	=> 'QUEST_FLAGS_SHARABLE',
+  9 => 'QUEST_FLAGS_NONE2',
+  16 => 'Unknown',
+  32 => 'QUEST_FLAGS_EPIC',
+  64 => 'QUEST_FLAGS_RAID	',
+  128	=> 'QUEST_FLAGS_TBC',
+  256	=> 'QUEST_FLAGS_UNK2',
+  512	=> 'QUEST_FLAGS_HIDDEN_REWARDS',
+  1024 => 'QUEST_FLAGS_AUTO_REWARDED',
+  2048 => 'QUEST_FLAGS_TBC_RACES',
+  4096 => 'QUEST_FLAGS_DAILY',
+  8192 => 'QUEST_FLAGS_UNK5'
+}
+
+Quest_Special_Flags = {
+  0 => 'No extra requirements',
+  1 => 'Makes the quest repeatable.',
+  2 => 'Makes the quest only completable by some external event',
+  3 => 'Both repeatable and completable only through an external event'
+}

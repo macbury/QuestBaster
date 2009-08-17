@@ -1,27 +1,177 @@
-<h1>New quest_template</h1>
-
+<h1>Quest Editor >> <%= link_to @quest_template.title, @quest_template %></h1>
+<div class="box">
 <% form_for(@quest_template) do |f| %>
   <%= f.error_messages %>
 
-  <p>
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </p>
-  <p>
-    <%= f.label :minlevel %><br />
-    <%= f.text_field :minlevel %>
-  </p>
-  <p>
-    <%= f.label :questlevel %><br />
-    <%= f.text_field :questlevel %>
-  </p>
-  <p>
-    <%= f.label :entry %><br />
-    <%= f.text_field :entry %>
-  </p>
+	<p>
+		<%= f.label :entry, 'Entry ID(unique, number):' %>
+		<%= f.text_field :entry %><br/>
+		<a href="http://www.wowhead.com/?quest=0" id="wow_desc">WoW Head quest info</a>
+	</p>
+
+  <fieldset class="column">
+  	<legend>Quest Conditions</legend>
+		<p>
+			<%= f.label :QuestLevel, 'Level' %>
+			<%= f.text_field :MinLevel %> - <%= f.text_field :QuestLevel %>
+		</p>
+		<p>
+			<%= f.label :Type, 'Type' %>
+			<%= f.select :Type, QuestType.sort{ |a,b| a[0] <=> b[0] }.map { |id, name| [name, id] } %>
+		</p>
+		<p>
+			<%= f.label :RequiredRaces, 'Side/Race' %>
+			<%= f.select :RequiredRaces, Races.sort{ |a,b| a[0] <=> b[0] }.map { |id, name| [name, id] } %>
+		</p>
+		<p>
+			<%= f.label :RequiredMinRepFaction, 'Minimal reputation in faction' %> - <small>(Enter id or name)</small><br/>
+			<%= f.text_field :required_min_faction_name %> - <%= f.select :RequiredMinRepValue, Factions_Reputation.sort{ |a,b| a[0] <=> b[0] }.map { |id, name| [name, id] }, { :include_blank => true } %> 
+		</p>
+		<p>
+			<%= f.label :RequiredMaxRepFaction, 'Maximum reputation in faction' %> - <small>(Enter id or name)</small><br/>
+			<%= f.text_field :required_max_faction_name %> - <%= f.select :RequiredMaxRepValue, Factions_Reputation.sort{ |a,b| a[0] <=> b[0] }.map { |id, name| [name, id] }, { :include_blank => true } %> 
+		</p>
+	</fieldset>
+
+	<fieldset class="column right">
+		<legend>Quest Configuration</legend>
+		<p>
+			<%= f.label :QuestFlags, 'Quest Flags' %>
+			<%= f.select :QuestFlags, Quest_Flags.sort{ |a,b| a[0] <=> b[0] }.map { |id, name| [name, id] } %><br /><small id="quest_flag_desc">Loading...</small>
+		</p>
+		
+		<p>
+			<%= f.label :Method %>
+			<%= f.select :Method, [0,1,2], :selected => 2 %> &#x2190; &#x2190; &#x2190; <a href="http://wiki.udbforums.org/index.php/Quest_template#Method">????</a>
+		</p>
+		
+		<p>
+			<%= f.label :SpecialFlags, 'Special Flags' %>
+			<%= f.select :SpecialFlags, Quest_Special_Flags.sort{ |a,b| a[0] <=> b[0] }.map { |id, name| [name, id] } %>
+		</p>
+		
+		<p>
+			<%= f.label :SuggestedPlayers, 'Suggested Players' %>
+			<%= f.text_field :SuggestedPlayers %>
+		</p>
+		
+		<p>
+			<%= f.label :zone_or_sort_name, 'Group in quest log(ZoneOrSort)' %> - (Enter name or ID)<br />
+			<%= f.text_field :zone_or_sort_name %>
+		</p>
+		
+		<p>
+			<%= f.label :LimitTime, 'Time Limit' %>
+			<%= f.time_select :LimitTime, :include_seconds => true, :include_hours => false %>
+		</p>
+	</fieldset>
+	
+	<div class="clear"></div>
+	
+  <fieldset>
+  	<legend>Quest Start</legend>
+		<p>
+			<%= f.label :Title %><br />
+			<%= f.text_field :Title %>
+		</p>
+		
+		<p>
+			<div>
+				<%= f.label :Details_f, 'Details' %>
+				<div class="toolbar">
+					(Auto breakpoints)
+					<a href="javascript:$(function(){ $('#quest_template_Details').insertAtCaret('$N'); return false; })">Player Name</a>
+					<a href="javascript:$(function(){ $('#quest_template_Details').insertAtCaret('$R'); return false; })">Player Race</a>
+					<a href="javascript:$(function(){ $('#quest_template_Details').insertAtCaret('$C'); return false; })">Player Class</a>
+				</div>
+			</div>
+			<%= f.text_area :Details_f %>
+		</p>
+		
+		<p>
+			<%= f.label :Objectives_f, 'Objectives' %><br />
+			<%= f.text_area :Objectives_f %>
+		</p>
+	</fieldset>
+	
+	<fieldset>
+		<legend>Quest in progress</legend>
+		<% 4.times do |number| %>
+		<p>
+			<%= f.label "ObjectiveText#{number+1}".to_sym, "Objective Text #{number+1}" %><br/>
+			<%= f.text_field "ObjectiveText#{number+1}".to_sym %>
+		</p>
+		<% end %>
+	</fieldset>
+	
+	<fieldset>
+		<legend>Quest Complete</legend>
+		<p>
+			<%= f.label :OfferRewardText_f, 'Offer Reward Text' %><br/>
+			<%= f.text_area :OfferRewardText_f %>
+		</p>
+		
+		<p>
+			<%= f.label :RequestItemsText_f, 'Request Items Text' %><br/>
+			<%= f.text_area :RequestItemsText_f %>
+		</p>
+		
+		<p>
+			<%= f.label :EndText_f, 'End Text' %> - <small> Only when Special Flag is 2</small><br/>
+			<%= f.text_area :EndText_f %>
+		</p>
+  </fieldset>
+	
+	<fieldset class="column">
+		<legend>Required items to complete quest</legend>
+		<p>
+			<small>Enter Item ID or Name</small>
+		</p>
+		<ol>
+		<% 4.times do |i| %>
+		
+			<li>
+				<%= f.text_field "reqItemName#{i+1}".to_sym %> x <%= f.text_field "ReqItemCount#{i+1}".to_sym %>
+			</li>
+		
+		<% end %>
+		</ol>
+	</fieldset>
+	
+	<fieldset class="column">
+		<legend>Slay creatures to complete quest</legend>
+		<p>
+			<small>Enter Item ID or Name</small>
+		</p>
+		<ol>
+			<% 4.times do |i| %>
+				<li>
+					<%= f.text_field "reqCreature#{i+1}".to_sym %> x <%= f.text_field "ReqCreatureOrGOCount#{i+1}".to_sym %>
+				</li>
+			<% end %>
+		</ol>
+	</fieldset>
+	
+	<div class="clear"></div>
+	<!--
+	<fieldset class="column">
+		<legend>Required object to complete quest</legend>
+	</fieldset>
+	
+	<div class="clear"></div>
+-->
+	<fieldset>
+		<legend>Rewards</legend>
+		<p>
+			<%= f.label :RewOrReqMoney, 'Money' %>
+			<%= f.text_field :gold %> - <%= f.text_field :silver %> - <%= f.text_field :copper %>
+		</p>
+	</fieldset>
+	
   <p>
     <%= f.submit 'Create' %>
   </p>
 <% end %>
 
+</div>
 <%= link_to 'Back', quest_templates_path %>

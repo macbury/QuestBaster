@@ -73,7 +73,7 @@ a:hover { color: #FF8000; }
 }
 
 .wrapper {
-	width: 90%;
+	width: 900px;
 	margin: 10px auto;
 }
 
@@ -145,6 +145,65 @@ a:hover { color: #FF8000; }
 	text-align: right;
 }
 
+#quest_template_Entry {
+	width: 60px;
+	text-align: right;
+}
+
+#quest_template_Title {
+	width: 100%;
+}
+
+#quest_template_Details_f {
+	height: 100px;
+}
+
+#quest_template_Objectives_f {
+	height: 50px;
+}
+
+#quest_template_QuestLevel, #quest_template_MinLevel {
+	width: 40px;
+	text-align: center;
+}
+
+#quest_template_SuggestedPlayers {
+	width: 40px;
+	text-align: right;
+}
+
+#quest_template_OfferRewardText_f, #quest_template_EndText_f, #quest_template_RequestItemsText_f {
+	height: 70px;
+}
+
+#quest_template_ObjectiveText1, #quest_template_ObjectiveText2, #quest_template_ObjectiveText3, #quest_template_ObjectiveText4 {
+	width: 100%;
+}
+
+#quest_template_gold, #quest_template_silver, #quest_template_copper {
+	padding-left: 20px;
+	width: 50px;
+	text-align: right;
+	background: #fff url('/images/money_gold.gif') no-repeat 4px center;
+}
+
+#quest_template_silver {
+	background-image: url('/images/money_silver.gif');
+}
+
+#quest_template_copper {
+	background-image: url('/images/money_copper.gif');
+}
+
+#quest_template_ReqItemCount1, #quest_template_ReqItemCount2, #quest_template_ReqItemCount3, #quest_template_ReqItemCount4, #quest_template_ReqCreatureOrGOCount1, #quest_template_ReqCreatureOrGOCount2, #quest_template_ReqCreatureOrGOCount3, #quest_template_ReqCreatureOrGOCount4 {
+	width: 40px;
+	text-align: right;
+}
+
+#quest_template_SpecialFlags {
+	width: 200px;
+}
+
 .box {
 	padding: 5px 10px;
 	background-color: rgb(36, 36, 36);
@@ -152,4 +211,58 @@ a:hover { color: #FF8000; }
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	margin-bottom: 10px;
+}
+
+.box input[type="text"], .box textarea {
+	border: 1px solid #000;
+	background: #fff;
+	padding: 5px;
+	margin: 5px 0;
+}
+
+.box textarea {
+	width: 100%;
+}
+
+.box fieldset {
+	border: 1px solid #ccc;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	margin-bottom: 10px;
+	padding: 10px;
+}
+
+.box legend {
+	padding: 0 10px;
+	font-weight: bold;
+	font-size: 15px;
+}
+
+fieldset p {
+	margin-top: 0;
+} 
+
+fieldset p:last-child {
+	margin-bottom: 0;
+}
+
+.toolbar {
+	float: right;
+}
+
+.toolbar a {
+	padding: 2px 4px;
+	border: 1px solid #ccc;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	margin-left: 5px;
+}
+
+.column {
+	width: 413px;
+	float: left;
+}
+
+.clear {
+	clear:both;
 }

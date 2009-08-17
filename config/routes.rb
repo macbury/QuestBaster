@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :quest_templates, :collection => { :search => :any }
+  map.resources :quest_templates, :collection => { :sugest_faction => :any, :sugest_zone_or_sort => :any, :suggest_item => :any, :suggest_monster => :any }
   map.search '/szukaj', :controller => 'quest_templates', :action => 'index'
   # The priority is based upon order of creation: first created -> highest priority.
 
