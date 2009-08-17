@@ -71,7 +71,7 @@ end
 
 Quest_Sort = {}
 
-File.new(RAILS_ROOT+'/config/quest_Sort.txt', "r").each do |line|
+File.new(RAILS_ROOT+'/config/quest_sort.txt', "r").each do |line|
   name = line.strip
   
   if name =~ regexp
