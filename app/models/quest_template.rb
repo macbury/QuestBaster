@@ -5,7 +5,7 @@ class QuestTemplate < ActiveRecord::Base
   validates_uniqueness_of :entry
   
   after_save :create_quest_relations
-  
+  before_save :generate_entry
   #harcore - bo ktoś spieprzył relacje w bazie....
   4.times do |i|
     index = i + 1
@@ -223,6 +223,7 @@ class QuestTemplate < ActiveRecord::Base
         end
       end
     end
+  
   end
   
   def required_max_faction_name
@@ -333,7 +334,21 @@ class QuestTemplate < ActiveRecord::Base
   
   protected
   
+  def generate_entry
+    if self.entry.nil? || self.entry == 0
+      self.entry = QuestTemplate.maximum(:entry) + 1
+    end
+    
+    if self.RequiredMaxRepValue.nil?
+      self.RequiredMaxRepValue = 0
+    end
+    if self.RequiredMinRepValue.nil?
+      self.RequiredMinRepValue = 0
+    end
+  end
+  
   def create_quest_relations
+    
     begin
       quest_giver.destroy
       quest_involver.destroy
