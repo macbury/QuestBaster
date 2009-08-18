@@ -179,6 +179,12 @@ class QuestTemplatesController < ApplicationController
   # DELETE /quest_templates/1.xml
   def destroy
     @quest_template = QuestTemplate.find(params[:id])
+    
+    begin
+      @quest_template.quest_giver.destroy
+      @quest_template.quest_involver.destroy
+    rescue Exception => e
+    end
     @quest_template.destroy
 
     respond_to do |format|
