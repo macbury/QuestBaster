@@ -1,9 +1,23 @@
 class QuestTemplatesController < ApplicationController
   
-  def suggest_monster
-    @monsters = Monster.all(:conditions => ['name LIKE ? OR entry = ?', "%#{params[:q]}%", params[:q].to_i], :limit => 10).map(&:name)
+  def suggest_game_object
+    begin
+      @object = GameObject.find(params[:entry])
+    rescue ActiveRecord::RecordNotFound
+      @object = GameObject.new(:entry => params[:entry], :name => '[NONE]')
+    end
     
-    render :text => @monsters.join("\n")
+    render :json => { :name => @object.name, :entry => @object.entry }
+  end
+  
+  def suggest_monster
+    @monsters = Monster.all(:conditions => ['name LIKE ? OR entry = ?', "%#{params[:q]}%", params[:q].to_i], :limit => 10)
+    
+    respond_to do |format|
+      format.html { render :text => @monsters.map(&:name).join("\n") }
+      format.json { render :json => { :name => @monsters[0].name, :entry => @monsters[0].entry } }
+    end
+    
   end
   
   def sugest_faction

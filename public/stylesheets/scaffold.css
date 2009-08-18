@@ -173,7 +173,12 @@ a:hover { color: #FF8000; }
 }
 
 #quest_template_OfferRewardText_f, #quest_template_EndText_f, #quest_template_RequestItemsText_f {
-	height: 70px;
+	height: 90px;
+}
+
+#quest_template_reqObjectID1, #quest_template_reqObjectID2, #quest_template_reqObjectID3, #quest_template_reqObjectID4 {
+	width: 60px;
+	text-align: center;
 }
 
 #quest_template_ObjectiveText1, #quest_template_ObjectiveText2, #quest_template_ObjectiveText3, #quest_template_ObjectiveText4 {
@@ -195,13 +200,18 @@ a:hover { color: #FF8000; }
 	background-image: url('/images/money_copper.gif');
 }
 
-#quest_template_ReqItemCount1, #quest_template_ReqItemCount2, #quest_template_ReqItemCount3, #quest_template_ReqItemCount4, #quest_template_ReqCreatureOrGOCount1, #quest_template_ReqCreatureOrGOCount2, #quest_template_ReqCreatureOrGOCount3, #quest_template_ReqCreatureOrGOCount4 {
+#quest_template_ReqItemCount1, #quest_template_ReqItemCount2, #quest_template_ReqItemCount3, #quest_template_ReqItemCount4, #quest_template_ReqCreatureOrGOCount1, #quest_template_ReqCreatureOrGOCount2, #quest_template_ReqCreatureOrGOCount3, #quest_template_ReqCreatureOrGOCount4, #quest_template_RewItemCount1, #quest_template_RewItemCount2, #quest_template_RewItemCount3, #quest_template_RewItemCount4, #quest_template_RewChoiceItemCount1, #quest_template_RewChoiceItemCount2, #quest_template_RewChoiceItemCount3, #quest_template_RewChoiceItemCount4 {
 	width: 40px;
 	text-align: right;
 }
 
 #quest_template_SpecialFlags {
 	width: 200px;
+}
+
+#quest_template_RewRepValue1, #quest_template_RewRepValue2, #quest_template_RewRepValue3, #quest_template_RewRepValue4 {
+	width: 80px;
+	text-align: right;
 }
 
 .box {
@@ -265,4 +275,21 @@ fieldset p:last-child {
 
 .clear {
 	clear:both;
+}
+
+.box input[type="submit"] {
+	width: 300px;
+	height: 30px;
+	text-align: center;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border: 0;
+	color: #fff;
+	background: #000;
+	margin: 0 auto;
+}
+
+.box input[type="submit"]:active {
+	color: #000;
+	background: #fff;
 }

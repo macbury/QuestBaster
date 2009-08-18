@@ -22,4 +22,16 @@ module QuestTemplatesHelper
     
   end
   
+  def wowhead_quest_creature_or_object_link(obj)
+    if obj.nil?
+      return "[NONE]"
+    else
+      if obj.class == ObjectQuestRelation
+        return link_to obj.game_object.name, "http://www.wowhead.com/?object=#{obj.id}"
+      else
+        return link_to obj.monster.name, "http://www.wowhead.com/?npc=#{obj.id}"
+      end
+    end
+  end
+  
 end

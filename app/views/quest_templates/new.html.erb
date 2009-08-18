@@ -56,13 +56,14 @@
 		</p>
 		
 		<p>
-			<%= f.label :zone_or_sort_name, 'Group in quest log(ZoneOrSort)' %> - (Enter name or ID)<br />
+			<%= f.label :zone_or_sort_name, 'Group in quest log(ZoneOrSort)' %> - <small>(Enter name or ID, leave blank to autocomplete)</small><br />
 			<%= f.text_field :zone_or_sort_name %>
 		</p>
 		
 		<p>
 			<%= f.label :LimitTime, 'Time Limit' %>
-			<%= f.time_select :LimitTime, :include_seconds => true, :include_hours => false %>
+			<%= f.text_field :LimitTime %>
+			<%#= f.time_select :LimitTime, :include_seconds => true, :include_hours => false %>
 		</p>
 	</fieldset>
 	
@@ -153,23 +154,90 @@
 	</fieldset>
 	
 	<div class="clear"></div>
-	<!--
-	<fieldset class="column">
-		<legend>Required object to complete quest</legend>
+
+	<fieldset>
+		<legend>Required to cast spell or/and go to object to complete quest</legend>
+		<p>
+			<small>Enter Item ID or Name</small> spell/object name/object id/count
+		</p>
+		<ol>
+			<% 4.times do |i| %>
+				<li>
+					cast <%= f.text_field "ReqSpellCast#{i+1}".to_sym %> on 
+					<%= link_to @quest_template.send("reqObjectName#{i+1}".to_sym), "http://www.wowhead.com/?object="+ @quest_template.send("reqObjectID#{i+1}".to_sym).to_s %> - <%= f.text_field "reqObjectID#{i+1}", :class => 'object_id' %> x <%= f.text_field "ReqCreatureOrGOCount#{i+1}".to_sym %>
+				</li>
+			<% end %>
+		</ol>
 	</fieldset>
 	
-	<div class="clear"></div>
--->
+
 	<fieldset>
-		<legend>Rewards</legend>
+		<legend>Reward gold & reputation</legend>
 		<p>
 			<%= f.label :RewOrReqMoney, 'Money' %>
 			<%= f.text_field :gold %> - <%= f.text_field :silver %> - <%= f.text_field :copper %>
 		</p>
+		<p>
+			<small>Enter Item ID or Name</small>
+		</p>
+		<ol>
+			<% 4.times do |i| %>
+				<li>
+					<%= f.text_field "rewardFactionName#{i+1}".to_sym %> > 
+					<%= f.text_field "RewRepValue#{i+1}".to_sym %>
+				</li>
+			<% end %>
+		</ol>
 	</fieldset>
 	
-  <p>
-    <%= f.submit 'Create' %>
+	<fieldset class="column">
+		<legend>Reward Items</legend>
+		<p>
+			<small>Enter Item ID or Name</small>
+		</p>
+		<ol>
+			<% 4.times do |i| %>
+				<li>
+					<%= f.text_field "rewardItemName#{i+1}".to_sym %> x 
+					<%= f.text_field "RewItemCount#{i+1}".to_sym %>
+				</li>
+			<% end %>
+		</ol>
+	</fieldset>
+	
+	<fieldset class="column">
+		<legend>Reward pick item</legend>
+		<p>
+			<small>Enter Item ID or Name</small>
+		</p>
+		<ol>
+			<% 4.times do |i| %>
+				<li>
+					<%= f.text_field "rewardChoiceItemName#{i+1}".to_sym %> x 
+					<%= f.text_field "RewChoiceItemCount#{i+1}".to_sym %>
+				</li>
+			<% end %>
+		</ol>
+	</fieldset>
+	
+	<div class="clear"></div>
+	
+	<fieldset>
+		<legend>Quest giver & Quest reciver</legend>
+		<p>
+			<%= f.label :quest_giver_id, 'Quest giver:' %>
+			<%= f.select :quest_giver_type, [['Creature', 0], ['Game object', 1]] %>
+			<%= f.text_field :quest_giver_id %> - <%= wowhead_quest_creature_or_object_link(@quest_template.quest_giver) %>
+		</p>
+		<p>
+			<%= f.label :quest_involver_id, 'Quest giver:' %>
+			<%= f.select :quest_involver_type, [['Creature', 0], ['Game object', 1]] %>
+			<%= f.text_field :quest_involver_id %> - <%= wowhead_quest_creature_or_object_link(@quest_template.quest_involver) %><br/>
+		</p>
+	</fieldset>
+	
+  <p style="text-align:center">
+    <%= f.submit 'SAVE' %>
   </p>
 <% end %>
 

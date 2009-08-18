@@ -33,11 +33,61 @@ $(document).ready(function () {
 		$('#wow_desc').attr('href', 'http://www.wowhead.com/?quest='+$(this).val());
 	}).change();
 	
-	$('#quest_template_reqItemName1, #quest_template_reqItemName2, #quest_template_reqItemName3, #quest_template_reqItemName4').autocomplete('/quest_templates/suggest_item');
+	$('.object_id').keyup(function () {
+		var self = $(this);
+		jQuery.getJSON('/quest_templates/suggest_game_object?entry='+$(this).val(), function (data) {
+			self.siblings('a').attr('href','http://www.wowhead.com/?object='+data.entry).text(data.name);
+		});
+	});
+	
+	$('#quest_template_quest_giver_id').keyup(function () {
+		var self = $(this);
+		
+		if ($('#quest_template_quest_giver_type :selected').val() == 1) {
+			jQuery.getJSON('/quest_templates/suggest_game_object?entry='+$(this).val(), function (data) {
+				self.siblings('a').attr('href','http://www.wowhead.com/?object='+data.entry).text(data.name);
+			});
+		}else{
+			jQuery.getJSON('/quest_templates/suggest_monster.json?q='+$(this).val(), function (data) {
+				self.siblings('a').attr('href','http://www.wowhead.com/?npc='+data.entry).text(data.name);
+			});
+			
+			if ($('#quest_template_quest_involver_id').val() == "") {
+				$('#quest_template_quest_involver_id').val(self.val());
+			}
+		}
+
+	});
+	
+	$('#quest_template_quest_giver_type').change(function () {
+		$('#quest_template_quest_giver_id').keyup();
+	});
+	
+	$('#quest_template_quest_involver_id').keyup(function () {
+		var self = $(this);
+		
+		if ($('#quest_template_quest_involver_type :selected').val() == 1) {
+			jQuery.getJSON('/quest_templates/suggest_game_object?entry='+$(this).val(), function (data) {
+				self.siblings('a').attr('href','http://www.wowhead.com/?object='+data.entry).text(data.name);
+			});
+		}else{
+			jQuery.getJSON('/quest_templates/suggest_monster.json?q='+$(this).val(), function (data) {
+				self.siblings('a').attr('href','http://www.wowhead.com/?npc='+data.entry).text(data.name);
+			});
+
+		}
+
+	});
+	
+	$('#quest_template_quest_involver_type').change(function () {
+		$('#quest_template_quest_involver_id').keyup();
+	});
+	
+	$('#quest_template_reqItemName1, #quest_template_reqItemName2, #quest_template_reqItemName3, #quest_template_reqItemName4, #quest_template_rewardItemName1, #quest_template_rewardItemName2, #quest_template_rewardItemName3, #quest_template_rewardItemName4, #quest_template_rewardChoiceItemName1, #quest_template_rewardItemName2, #quest_template_rewardItemName3, #quest_template_rewardItemName4').autocomplete('/quest_templates/suggest_item');
 	
 	$('#quest_template_reqCreature1, #quest_template_reqCreature2, #quest_template_reqCreature3, #quest_template_reqCreature4').autocomplete('/quest_templates/suggest_monster');
 	
-	$("#quest_template_required_min_faction_name, #quest_template_required_max_faction_name").autocomplete('/quest_templates/sugest_faction');
+	$("#quest_template_required_min_faction_name, #quest_template_required_max_faction_name, #quest_template_rewardFactionName1, #quest_template_rewardFactionName2, #quest_template_rewardFactionName3, #quest_template_rewardFactionName4").autocomplete('/quest_templates/sugest_faction');
 	$("#quest_template_zone_or_sort_name").autocomplete('/quest_templates/sugest_zone_or_sort');
 	
 	$('#quest_template_QuestFlags').change(function () {
