@@ -341,24 +341,27 @@ class QuestTemplate < ActiveRecord::Base
       
     end
     
-    if @quest_giver_type.to_i == 0
+    giver = @quest_giver_type || quest_giver_type
+    if giver.to_i == 0
       o = CreatureQuestRelation.new
     else
       o = ObjectQuestRelation.new
     end
     
     o.quest = self.id
-    o.id = @quest_involver_id
+    o.id = @quest_giver_id || quest_giver_id
     o.save
     
-    if @quest_involver_type.to_i == 0
+    taker = @quest_involver_type || quest_involver_type
+    
+    if taker.to_i == 0
       o = CreatureQuestInvolved.new
     else
       o = ObjectQuestInvolved.new
     end
     
     o.quest = self.id
-    o.id = @quest_involver_id
+    o.id = @quest_involver_id || quest_involver_id
     o.save
   end
 end

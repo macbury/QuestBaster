@@ -110,7 +110,17 @@ class QuestTemplatesController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @quest_template }
+      format.yaml do
+        attributes = @quest.attributes
+        attributes.merge!({
+          'quest_giver_id' => @quest.quest_giver_id,
+          'quest_giver_type' => @quest.quest_giver_type,
+          'quest_involver_type' => @quest.quest_involver_type,
+          'quest_involver_id' => @quest.quest_involver_id
+        })
+        send_data attributes.to_yaml, :filename => sexy_unix_name(@quest)
+      end
+
     end
   end
 
@@ -176,4 +186,23 @@ class QuestTemplatesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  protected 
+    
+    def sexy_unix_name(quest)
+      name = ''
+      name += "#{quest.entry}_"
+      title = @quest.title.strip
+      
+      title.gsub!('!','')
+      title.gsub!('?','')
+      title.gsub!('.','')
+      title.gsub!(',','')
+      title.gsub!(' ','_')
+      title.gsub!('"','')
+      title.gsub!('\'','')
+      name += "#{title}.quest"
+      
+      return name
+    end
 end
