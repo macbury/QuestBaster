@@ -116,7 +116,10 @@ class QuestTemplatesController < ApplicationController
           'quest_giver_id' => @quest.quest_giver_id,
           'quest_giver_type' => @quest.quest_giver_type,
           'quest_involver_type' => @quest.quest_involver_type,
-          'quest_involver_id' => @quest.quest_involver_id
+          'quest_involver_id' => @quest.quest_involver_id,
+          'copper' => @quest.copper,
+          'silver' => @quest.silver,
+          'gold'   => @quest.gold
         })
         send_data attributes.to_yaml, :filename => sexy_unix_name(@quest)
       end

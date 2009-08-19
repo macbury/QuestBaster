@@ -216,12 +216,15 @@ class QuestTemplate < ActiveRecord::Base
     if faction_value.nil?
       write_attribute :RequiredMinRepFaction, 0  
     else
+      has = false
       Factions.each do |faction_id, faction_name|
         if faction_name == faction_value || faction_id == faction_value.to_i
           write_attribute :RequiredMinRepFaction, faction_id
+          has = true
           break
         end
       end
+      write_attribute :RequiredMinRepFaction, 0 unless has
     end
   
   end
@@ -234,12 +237,15 @@ class QuestTemplate < ActiveRecord::Base
     if faction_value.nil?
       write_attribute :RequiredMaxRepFaction, 0  
     else
+      has = false
       Factions.each do |faction_id, faction_name|
         if faction_name == faction_value || faction_id == faction_value.to_i
           write_attribute :RequiredMaxRepFaction, faction_id
+          has = true
           break
         end
       end
+      write_attribute :RequiredMaxRepFaction, 0 unless has
     end
   end
   
@@ -271,30 +277,22 @@ class QuestTemplate < ActiveRecord::Base
     end
   end
   
-  def gold
-    self.RewOrReqMoney.div(10_000)
-  end
+  attr_accessor :gold, :silver, :copper
   
-  def gold=(amount)
-    self.RewOrReqMoney += amount.to_i * 10_000
+  def gold
+    @gold || self.RewOrReqMoney.div(10_000)
+    
   end
   
   def silver
     amount = self.RewOrReqMoney - gold * 10_000
-    amount.div(100)
+    @silver || amount.div(100)
   end
-  
-  def silver=(amount)
-    self.RewOrReqMoney += amount.to_i * 100
-  end
-  
+
   def copper
-    return self.RewOrReqMoney - (gold * 10_000 + silver * 100)
+    return @copper || self.RewOrReqMoney - (gold * 10_000 + silver * 100)
   end
-  
-  def copper=(amount)
-    self.RewOrReqMoney += amount.to_i
-  end
+
   
   def quest_giver
     game_object = ObjectQuestRelation.first(:conditions => { :quest => self.entry })
@@ -345,6 +343,12 @@ class QuestTemplate < ActiveRecord::Base
     if self.RequiredMinRepValue.nil?
       self.RequiredMinRepValue = 0
     end
+    
+    self.RewOrReqMoney = 0
+    
+    self.RewOrReqMoney += @gold.to_i * 10_000
+    self.RewOrReqMoney += @silver.to_i * 100
+    self.RewOrReqMoney += @copper.to_i
   end
   
   def create_quest_relations
